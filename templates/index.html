@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Resume Screening AI</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Arial, sans-serif;
+background:#f4f7fb;
+color:#222;
+}
+
+/* NAVBAR */
+nav{
+background:#0d1b2a;
+color:white;
+padding:18px 40px;
+font-size:24px;
+font-weight:bold;
+}
+
+/* HERO */
+.hero{
+height:420px;
+background:url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1400&q=80');
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+}
+
+.hero-content{
+background:rgba(0,0,0,0.55);
+padding:35px;
+border-radius:12px;
+width:70%;
+}
+
+.hero h1{
+font-size:46px;
+margin-bottom:15px;
+}
+
+.hero p{
+font-size:20px;
+line-height:1.6;
+}
+
+/* SECTION */
+.section{
+max-width:1100px;
+margin:auto;
+padding:50px 20px;
+}
+
+/* FEATURES */
+.features{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:20px;
+margin-top:30px;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:14px;
+box-shadow:0 6px 14px rgba(0,0,0,0.08);
+}
+
+.card h3{
+margin-bottom:10px;
+color:#0d1b2a;
+}
+
+/* FORM */
+.form-box{
+background:white;
+padding:30px;
+border-radius:14px;
+box-shadow:0 6px 14px rgba(0,0,0,0.08);
+margin-top:40px;
+}
+
+textarea{
+width:100%;
+padding:12px;
+border:1px solid #ccc;
+border-radius:8px;
+margin-top:10px;
+}
+
+input[type=file]{
+margin-top:15px;
+}
+
+button{
+margin-top:20px;
+padding:14px 28px;
+background:#0077b6;
+border:none;
+color:white;
+font-size:16px;
+border-radius:8px;
+cursor:pointer;
+}
+
+button:hover{
+background:#005f8f;
+}
+
+/* RESULT */
+.result{
+background:white;
+padding:20px;
+border-radius:12px;
+margin-top:18px;
+box-shadow:0 4px 10px rgba(0,0,0,0.08);
+}
+
+.bar-wrap{
+background:#ddd;
+border-radius:6px;
+overflow:hidden;
+}
+
+.bar{
+height:20px;
+background:#28a745;
+}
+
+.top{
+color:green;
+font-weight:bold;
+}
+
+/* QUOTE */
+.quote{
+margin-top:50px;
+background:#0d1b2a;
+color:white;
+padding:35px;
+border-radius:12px;
+text-align:center;
+font-size:22px;
+line-height:1.7;
+}
+
+footer{
+margin-top:50px;
+background:#111;
+color:#ccc;
+text-align:center;
+padding:18px;
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>Resume Screening AI</nav>
+
+<section class="hero">
+<div class="hero-content">
+<h1>Hire Smarter with AI</h1>
+<p>Upload resumes, compare candidates instantly, and find the best talent using intelligent resume screening technology.</p>
+</div>
+</section>
+
+<section class="section">
+
+<h2>Why Choose Our Platform?</h2>
+
+<div class="features">
+
+<div class="card">
+<h3>⚡ Fast Screening</h3>
+<p>Rank multiple resumes in seconds.</p>
+</div>
+
+<div class="card">
+<h3>🎯 Accurate Matching</h3>
+<p>Uses AI similarity scoring against job descriptions.</p>
+</div>
+
+<div class="card">
+<h3>📄 PDF Upload</h3>
+<p>Upload real resumes directly.</p>
+</div>
+
+<div class="card">
+<h3>🏆 Top Candidate Detection</h3>
+<p>Instantly identify strongest applicants.</p>
+</div>
+
+</div>
+
+<div class="form-box">
+
+<h2>Start Screening Now</h2>
+
+<form method="POST" enctype="multipart/form-data">
+
+<p>Job Description</p>
+<textarea name="jd" rows="8"></textarea>
+
+<p style="margin-top:15px;">Upload PDF Resumes</p>
+<input type="file" name="resumes" multiple accept=".pdf">
+
+<br>
+<button type="submit">Analyze Candidates</button>
+
+</form>
+
+</div>
+
+{% for row in results %}
+
+<div class="result">
+
+{% if loop.index == 1 %}
+<p class="top">🏆 Best Candidate</p>
+{% endif %}
+
+<h3>{{ row.name }}</h3>
+<p>Match Score: {{ row.score }}%</p>
+
+<div class="bar-wrap">
+<div class="bar" style="width:{{ row.score }}%;"></div>
+</div>
+
+<p style="margin-top:10px;"><b>Skills:</b> {{ row.skills }}</p>
+
+</div>
+
+{% endfor %}
+
+<div class="quote">
+“Hiring the right people takes time. Hiring the wrong people costs more.”
+</div>
+
+</section>
+
+<footer>
+© 2026 Resume Screening AI | Smart Hiring Solution
+</footer>
+
+</body>
+</html>
